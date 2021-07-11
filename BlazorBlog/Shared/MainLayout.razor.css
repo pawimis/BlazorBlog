@@ -1,0 +1,12 @@
+﻿.navbar {
+  background: #00B0F0;
+  color: white; }
+
+.navbar-brand {
+  color: white; }
+
+.navbar-light .navbar-brand {
+  color: white; }
+
+.active-nav > button {
+  background: green; }
