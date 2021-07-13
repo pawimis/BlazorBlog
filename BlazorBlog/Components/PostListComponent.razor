@@ -1,1 +1,6 @@
-﻿<h3>Post component</h3>
+﻿<div >
+    @foreach (var item in BlogPostItems)
+    {
+        <PostPreviewComponent TItem="BlazorBlog.Shared.Entities.BlogPost" Item="@item"></PostPreviewComponent>
+    }
+</div>

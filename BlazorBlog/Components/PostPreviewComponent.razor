@@ -1,0 +1,17 @@
+﻿@typeparam TItem
+<h1 class="post-title">@Item.Title</h1>
+<div class="blog-item">
+    <p class="right-aligned">@Item.CreateDate.ToShortDateString()</p>
+    <div class="blog-item-preview">
+        <img class="image-item" src="@Item.FrontPostImage" />
+        <p>@Item.IntroContent</p>
+        <div class="spaced-container">
+            @foreach (var tag in Item.Tags)
+            {
+                <p>#@tag</p>
+            }
+        </div>
+    </div>
+    <p class="right-aligned" lang="en">v @Item.BranchVersion.ToString().Replace(',', '.')</p>
+
+</div>

@@ -10,5 +10,25 @@
   {
     "outputFile": "Pages/MainPage.razor.css",
     "inputFile": "Pages/MainPage.razor.scss"
+  },
+  {
+    "outputFile": "Pages/AboutPage.razor.css",
+    "inputFile": "Pages/AboutPage.razor.scss"
+  },
+  {
+    "outputFile": "Components/PostPreviewComponent.razor.css",
+    "inputFile": "Components/PostPreviewComponent.razor.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/_variables.css",
+    "inputFile": "wwwroot/css/_variables.scss"
+  },
+  {
+    "outputFile": "Components/AboutBlogComponent.razor.css",
+    "inputFile": "Components/AboutBlogComponent.razor.scss"
+  },
+  {
+    "outputFile": "Components/AboutComponent.razor.css",
+    "inputFile": "Components/AboutComponent.razor.scss"
   }
 ]

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorBlog.Business\BlazorBlog.Business.csproj" />
+    <ProjectReference Include="..\BlazorBlog.Shared\BlazorBlog.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,10 +1,11 @@
 ﻿@page "/"
 <div class="main-container">
-    <div class="post-main primary-background">
+    <div class="post-main">
         <PostListComponent></PostListComponent>
     </div>
-    <div class="about-main secondary-background">
-        <AboutBlogComponent></AboutBlogComponent>
+    <div class="about-main">
+        <AboutComponent TItem="BlazorBlog.Shared.Entities.AboutEntity" Item="@AboutMeItem"></AboutComponent>
+        <AboutComponent TItem="BlazorBlog.Shared.Entities.AboutEntity" Item="@AboutBlog"></AboutComponent>
     </div>
 </div>
 

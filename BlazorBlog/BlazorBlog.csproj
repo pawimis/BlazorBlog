@@ -22,4 +22,10 @@
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorBlog.Business\BlazorBlog.Business.csproj" />
+    <ProjectReference Include="..\BlazorBlog.Shared\BlazorBlog.Shared.csproj" />
+    <ProjectReference Include="..\BlazorBlog.TestFake\BlazorBlog.TestFake.csproj" />
+  </ItemGroup>
+
 </Project>

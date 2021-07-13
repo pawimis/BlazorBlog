@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog", "BlazorBlog\BlazorBlog.csproj", "{4975BDD0-8454-4BF6-9AE9-BF624560DCE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog", "BlazorBlog\BlazorBlog.csproj", "{4975BDD0-8454-4BF6-9AE9-BF624560DCE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Shared", "BlazorBlog.Shared\BlazorBlog.Shared.csproj", "{F423D536-CD4C-4F53-AC3E-51F985F90C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.TestFake", "BlazorBlog.TestFake\BlazorBlog.TestFake.csproj", "{E8FCE740-A1C3-49C7-8991-EB4D7A445618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Business", "BlazorBlog.Business\BlazorBlog.Business.csproj", "{5E41F4EB-DD08-464C-9195-26D6ED8E4727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{4975BDD0-8454-4BF6-9AE9-BF624560DCE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4975BDD0-8454-4BF6-9AE9-BF624560DCE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4975BDD0-8454-4BF6-9AE9-BF624560DCE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F423D536-CD4C-4F53-AC3E-51F985F90C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F423D536-CD4C-4F53-AC3E-51F985F90C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F423D536-CD4C-4F53-AC3E-51F985F90C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F423D536-CD4C-4F53-AC3E-51F985F90C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8FCE740-A1C3-49C7-8991-EB4D7A445618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8FCE740-A1C3-49C7-8991-EB4D7A445618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8FCE740-A1C3-49C7-8991-EB4D7A445618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8FCE740-A1C3-49C7-8991-EB4D7A445618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
