@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.TestFake", "Blaz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Business", "BlazorBlog.Business\BlazorBlog.Business.csproj", "{5E41F4EB-DD08-464C-9195-26D6ED8E4727}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.WebApi", "BlazorBlog.WebApi\BlazorBlog.WebApi.csproj", "{C31B9F84-26B9-4773-8590-0E1CA57ADF3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E41F4EB-DD08-464C-9195-26D6ED8E4727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C31B9F84-26B9-4773-8590-0E1CA57ADF3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C31B9F84-26B9-4773-8590-0E1CA57ADF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C31B9F84-26B9-4773-8590-0E1CA57ADF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C31B9F84-26B9-4773-8590-0E1CA57ADF3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
