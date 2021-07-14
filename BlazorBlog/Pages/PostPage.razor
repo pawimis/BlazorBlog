@@ -5,7 +5,7 @@
         <p class="right-aligned">@Post.CreateDate.ToShortDateString()</p>
         <div class="blog-item">
             <img class="image-item" src="@Post.FrontPostImage" />
-            <p>@Item.IntroContent</p>
+            <p>@Post.IntroContent</p>
             <p> @((MarkupString)Post.Content)</p>
             <div class="spaced-container">
                 @if (Post.Tags != null)

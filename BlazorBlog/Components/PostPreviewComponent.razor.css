@@ -42,3 +42,7 @@
   background-color: #039be5;
   color: white;
   cursor: pointer; }
+
+.version-style > p:hover {
+  color: #039be5;
+  cursor: pointer; }

@@ -14,6 +14,11 @@
         <div class="btn btn-secondary primary-background" @onclick="OpenPostItem">Read More</div>
 
     </div>
-    <p class="right-aligned" lang="en">v @Item.BranchVersion.ToString().Replace(',', '.')</p>
+    <div class="right-aligned ">
+        <a href="@Item.GithubLink" target="blank">
+            <p class="version-style">v @Item.BranchVersion.ToString().Replace(',', '.')</p>
+        </a>
+    </div>
+    
 
 </div>
