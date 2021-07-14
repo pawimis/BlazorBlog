@@ -21,6 +21,7 @@ namespace BlazorBlog.Shared.Entities
 
         }
 
+        public string GithubLink { get; set; }
         public int Id { get; set; }
         public DateTime CreateDate { get; set; }
         public string Title { get; set; }
