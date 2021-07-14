@@ -30,5 +30,9 @@
   {
     "outputFile": "Components/AboutComponent.razor.css",
     "inputFile": "Components/AboutComponent.razor.scss"
+  },
+  {
+    "outputFile": "Pages/PostPage.razor.css",
+    "inputFile": "Pages/PostPage.razor.scss"
   }
 ]

@@ -1,17 +1,24 @@
 ﻿@typeparam TItem
-<h1 class="post-title">@Item.Title</h1>
+<h1 class="post-title" @onclick="OpenPostItem">@Item.Title</h1>
 <div class="blog-item">
     <p class="right-aligned">@Item.CreateDate.ToShortDateString()</p>
     <div class="blog-item-preview">
         <img class="image-item" src="@Item.FrontPostImage" />
-        <p>@Item.IntroContent</p>
+        <p>@Item.IntroContent [...]</p>
         <div class="spaced-container">
             @foreach (var tag in Item.Tags)
             {
                 <p>#@tag</p>
             }
         </div>
+        <div class="btn btn-secondary primary-background" @onclick="OpenPostItem">Read More</div>
+
     </div>
-    <p class="right-aligned" lang="en">v @Item.BranchVersion.ToString().Replace(',', '.')</p>
+    <div class="right-aligned ">
+        <a href="@Item.GithubLink" target="blank">
+            <p class="version-style">v @Item.BranchVersion.ToString().Replace(',', '.')</p>
+        </a>
+    </div>
+    
 
 </div>

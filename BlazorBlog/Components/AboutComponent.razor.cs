@@ -8,5 +8,6 @@ namespace BlazorBlog.Components
     {
         [Parameter]
         public TItem Item { get; set; }
+
     }
 }

@@ -5,6 +5,23 @@ namespace BlazorBlog.Shared.Entities
 {
     public class BlogPost
     {
+        public BlogPost(BlogPost post)
+        {
+            Id = post.Id;
+            CreateDate = post.CreateDate;
+            Title = post.Title;
+            Content = post.Content;
+            IntroContent = post.IntroContent;
+            FrontPostImage = post.FrontPostImage;
+            Tags = post.Tags;
+            BranchVersion = post.BranchVersion;
+        }
+        public BlogPost()
+        {
+
+        }
+
+        public string GithubLink { get; set; }
         public int Id { get; set; }
         public DateTime CreateDate { get; set; }
         public string Title { get; set; }
@@ -13,5 +30,6 @@ namespace BlazorBlog.Shared.Entities
         public string FrontPostImage { get; set; }
         public List<string> Tags { get; set; }
         public double BranchVersion { get; set; }
+
     }
 }

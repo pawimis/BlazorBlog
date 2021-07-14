@@ -1,21 +1,26 @@
 ﻿@import 'wwwroot/css/_variables.scss';
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 58px;
+    margin: auto;
+    height: 100%;
+    width: 80%;
+}
 .post-title {
     margin-top: 25px;
 }
 
-.post-title:hover {
-    color: $primary-color;
-    cursor: pointer;
-}
-
-.blog-item {
+.blog-item-border {
     align-content: end;
     border: 1px solid black;
     border-radius: 0;
 }
 
-.blog-item-preview {
+.blog-item {
     width: 95%;
     display: flex;
     margin-left: auto;
@@ -51,10 +56,5 @@
 .spaced-container > p:hover {
     background-color: $secondary-color;
     color: white;
-    cursor: pointer;
-}
-
-.version-style > p:hover {
-    color: $secondary-color;
     cursor: pointer;
 }

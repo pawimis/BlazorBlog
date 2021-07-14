@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog", "BlazorBlog\BlazorBlog.csproj", "{4975BDD0-8454-4BF6-9AE9-BF624560DCE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Shared", "BlazorBlog.Shared\BlazorBlog.Shared.csproj", "{F423D536-CD4C-4F53-AC3E-51F985F90C76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Shared", "BlazorBlog.Shared\BlazorBlog.Shared.csproj", "{F423D536-CD4C-4F53-AC3E-51F985F90C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.TestFake", "BlazorBlog.TestFake\BlazorBlog.TestFake.csproj", "{E8FCE740-A1C3-49C7-8991-EB4D7A445618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.TestFake", "BlazorBlog.TestFake\BlazorBlog.TestFake.csproj", "{E8FCE740-A1C3-49C7-8991-EB4D7A445618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Business", "BlazorBlog.Business\BlazorBlog.Business.csproj", "{5E41F4EB-DD08-464C-9195-26D6ED8E4727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Business", "BlazorBlog.Business\BlazorBlog.Business.csproj", "{5E41F4EB-DD08-464C-9195-26D6ED8E4727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

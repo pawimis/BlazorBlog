@@ -2,6 +2,7 @@
 using BlazorBlog.Shared.Entities;
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorBlog.TestFake
@@ -21,7 +22,7 @@ namespace BlazorBlog.TestFake
                 TestData.CreateTestBlogPosts();
             }
 
-            return Task.FromResult(TestData.BlogPosts[0]);
+            return Task.FromResult(TestData.BlogPosts.FirstOrDefault(x => x.Id == id));
         }
 
         public Task InsertNewPost(BlogPost post)
