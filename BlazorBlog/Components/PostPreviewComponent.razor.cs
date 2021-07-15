@@ -18,5 +18,6 @@ namespace BlazorBlog.Components
                 UriKind.Relative, out Uri uri);
             NavigationManager.NavigateTo(uri.ToString());
         }
+
     }
 }

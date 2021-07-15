@@ -53,3 +53,8 @@
     color: white;
     cursor: pointer;
 }
+
+.version-style > p:hover {
+    color: $secondary-color;
+    cursor: pointer;
+}

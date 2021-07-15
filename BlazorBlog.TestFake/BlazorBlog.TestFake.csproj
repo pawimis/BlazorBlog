@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\firstImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\firstImage.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlazorBlog.Business\BlazorBlog.Business.csproj" />
     <ProjectReference Include="..\BlazorBlog.Shared\BlazorBlog.Shared.csproj" />
   </ItemGroup>
