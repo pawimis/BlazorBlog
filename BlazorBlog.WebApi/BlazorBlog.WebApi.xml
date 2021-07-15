@@ -4,5 +4,16 @@
         <name>BlazorBlog.WebApi</name>
     </assembly>
     <members>
+        <member name="T:BlazorBlog.WebApi.Controllers.PostsController">
+            <summary>
+            Endpoint used to interact with posts 
+            </summary>
+        </member>
+        <member name="M:BlazorBlog.WebApi.Controllers.PostsController.GetPosts">
+            <summary>
+            Get All Posts
+            </summary>
+            <returns> List of posts</returns>
+        </member>
     </members>
 </doc>

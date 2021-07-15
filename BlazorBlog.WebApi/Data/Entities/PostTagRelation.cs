@@ -9,6 +9,7 @@ namespace BlazorBlog.WebApi.Data.Entities
     {
         public int TagId { get; set; }
         public int PostId { get; set; }
+        public int Id { get; set; }
 
         public virtual BlogPost Post { get; set; }
         public virtual TagsTable Tag { get; set; }

@@ -40,6 +40,7 @@ namespace BlazorBlog.WebApi.Controllers
             try
             {
                 IList<Data.Entities.BlogPost> posts = await _postRepository.FindAll();
+
                 IList<BlogPostEntityDTO> response = _mapper.Map<IList<BlogPostEntityDTO>>(posts);
                 return Ok(response);
             }

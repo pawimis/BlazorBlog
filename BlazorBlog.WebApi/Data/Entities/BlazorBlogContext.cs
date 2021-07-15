@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -40,6 +38,7 @@ namespace BlazorBlog.WebApi.Data.Entities
                 entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
                 entity.Property(e => e.FrontPostImage).HasMaxLength(250);
+                entity.Property(e => e.GithubLink).HasMaxLength(300);
 
                 entity.Property(e => e.IntroPostContent).HasMaxLength(600);
 
@@ -48,16 +47,14 @@ namespace BlazorBlog.WebApi.Data.Entities
 
             modelBuilder.Entity<PostTagRelation>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.HasOne(d => d.Post)
-                    .WithMany()
+                    .WithMany(p => p.PostTagRelations)
                     .HasForeignKey(d => d.PostId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostTagRelations_BlogPosts");
 
                 entity.HasOne(d => d.Tag)
-                    .WithMany()
+                    .WithMany(p => p.PostTagRelations)
                     .HasForeignKey(d => d.TagId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostTagRelations_TagsTable");

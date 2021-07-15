@@ -20,25 +20,25 @@ namespace BlazorBlog.WebApi.Services
 
         public async Task<bool> Create(BlogPost entity)
         {
-            await _db.Posts.AddAsync(entity);
+            await _db.BlogPosts.AddAsync(entity);
             return await Save();
         }
 
         public async Task<bool> Delete(BlogPost entity)
         {
-            _db.Posts.Remove(entity);
+            _db.BlogPosts.Remove(entity);
             return await Save();
         }
 
         public async Task<IList<BlogPost>> FindAll()
         {
-            List<BlogPost> post = await _db.Posts.ToListAsync();
+            List<BlogPost> post = await _db.BlogPosts.Include(x => x.PostTagRelations).ThenInclude(xf => xf.Tag).ToListAsync();
             return post;
         }
 
         public async Task<BlogPost> FindById(int id)
         {
-            BlogPost post = await _db.Posts.FindAsync(id);
+            BlogPost post = await _db.BlogPosts.FindAsync(id);
             return post;
         }
 
@@ -51,7 +51,7 @@ namespace BlazorBlog.WebApi.Services
 
         public async Task<bool> Update(BlogPost entity)
         {
-            _db.Posts.Update(entity);
+            _db.BlogPosts.Update(entity);
             return await Save();
         }
     }
