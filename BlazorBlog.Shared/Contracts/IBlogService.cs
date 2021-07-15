@@ -7,8 +7,8 @@ namespace BlazorBlog.Shared.Contracts
 {
     public interface IBlogService
     {
-        Task InsertNewPost(BlogPost post);
-        Task<List<BlogPost>> GetAllPosts();
-        Task<BlogPost> GetPostWithId(int id);
+        Task InsertNewPost(BlogPostEntityDTO post);
+        Task<List<BlogPostEntityDTO>> GetAllPosts();
+        Task<BlogPostEntityDTO> GetPostWithId(int id);
     }
 }

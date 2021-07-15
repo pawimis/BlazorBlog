@@ -6,7 +6,7 @@ using System;
 
 namespace BlazorBlog.Components
 {
-    public partial class PostPreviewComponent<TItem> : ComponentBase where TItem : BlogPost
+    public partial class PostPreviewComponent<TItem> : ComponentBase where TItem : BlogPostEntityDTO
     {
         [Parameter]
         public TItem Item { get; set; }

@@ -1,5 +1,6 @@
 using BlazorBlog.WebApi.Contracts;
 using BlazorBlog.WebApi.Data;
+using BlazorBlog.WebApi.Mappings;
 using BlazorBlog.WebApi.Services;
 
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +44,7 @@ namespace BlazorBlog.WebApi
                 });
             });
 
+            services.AddAutoMapper(typeof(Maps));
 
             services.AddSwaggerGen(config =>
             {
@@ -57,6 +59,7 @@ namespace BlazorBlog.WebApi
             });
 
             services.AddSingleton<ILoggerService, LoggerService>();
+            services.AddScoped<IPostRepository, PostRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlite("Connection string");

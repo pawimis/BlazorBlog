@@ -10,7 +10,7 @@ namespace BlazorBlog.Pages
 {
     public partial class PostPage : ComponentBase
     {
-        private BlogPost Post { get; set; } = new BlogPost();
+        private BlogPostEntityDTO Post { get; set; } = new BlogPostEntityDTO();
         [Parameter]
         public int Id { get; set; }
 
@@ -33,7 +33,7 @@ namespace BlazorBlog.Pages
             {
                 if (segmentCount > 1 && int.TryParse(uri.Segments[segmentCount - 1], out int Id))
                 {
-                    BlogPost post = await BlogService.GetPostWithId(Id);
+                    BlogPostEntityDTO post = await BlogService.GetPostWithId(Id);
                     if (post == null)
                     {
                         NavigationManager.NavigateTo("/");

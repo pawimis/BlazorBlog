@@ -1,6 +1,6 @@
 ﻿namespace BlazorBlog.Shared.Entities
 {
-    public class AboutEntity
+    public class AboutEntityDTO
     {
         public string Title { get; set; }
         public string Content { get; set; }

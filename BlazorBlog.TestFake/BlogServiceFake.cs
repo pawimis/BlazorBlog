@@ -9,13 +9,13 @@ namespace BlazorBlog.TestFake
 {
     public class BlogServiceFake : IBlogService
     {
-        public Task<List<BlogPost>> GetAllPosts()
+        public Task<List<BlogPostEntityDTO>> GetAllPosts()
         {
             TestData.CreateTestBlogPosts();
             return Task.FromResult(TestData.BlogPosts);
         }
 
-        public Task<BlogPost> GetPostWithId(int id)
+        public Task<BlogPostEntityDTO> GetPostWithId(int id)
         {
             if (TestData.BlogPosts == null)
             {
@@ -25,7 +25,7 @@ namespace BlazorBlog.TestFake
             return Task.FromResult(TestData.BlogPosts.FirstOrDefault(x => x.Id == id));
         }
 
-        public Task InsertNewPost(BlogPost post)
+        public Task InsertNewPost(BlogPostEntityDTO post)
         {
             TestData.BlogPosts.Add(post);
             return Task.FromResult(true);

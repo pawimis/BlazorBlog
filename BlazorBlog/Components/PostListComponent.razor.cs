@@ -13,12 +13,12 @@ namespace BlazorBlog.Components
         [Inject]
         private IBlogService BlogService { get; set; }
 
-        protected ObservableCollection<BlogPost> BlogPostItems { get; set; } = new ObservableCollection<BlogPost>();
+        protected ObservableCollection<BlogPostEntityDTO> BlogPostItems { get; set; } = new ObservableCollection<BlogPostEntityDTO>();
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            BlogPostItems = new ObservableCollection<BlogPost>(await BlogService.GetAllPosts());
+            BlogPostItems = new ObservableCollection<BlogPostEntityDTO>(await BlogService.GetAllPosts());
         }
     }
 }
