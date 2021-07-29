@@ -15,6 +15,11 @@ namespace BlazorBlog.TestFake
             return Task.FromResult(TestData.BlogPosts);
         }
 
+        public Task<List<TagEntityDTO>> GetAllTags()
+        {
+            return Task.FromResult(new List<TagEntityDTO>());
+        }
+
         public Task<BlogPostEntityDTO> GetPostWithId(int id)
         {
             if (TestData.BlogPosts == null)

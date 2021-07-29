@@ -34,5 +34,17 @@
   {
     "outputFile": "Pages/PostPage.razor.css",
     "inputFile": "Pages/PostPage.razor.scss"
+  },
+  {
+    "outputFile": "Pages/LoginPage.razor.css",
+    "inputFile": "Pages/LoginPage.razor.scss"
+  },
+  {
+    "outputFile": "Components/ValidationComponent.razor.css",
+    "inputFile": "Components/ValidationComponent.razor.scss"
+  },
+  {
+    "outputFile": "Pages/NewPostPage.razor.css",
+    "inputFile": "Pages/NewPostPage.razor.scss"
   }
 ]

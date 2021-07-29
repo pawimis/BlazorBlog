@@ -1,0 +1,21 @@
+﻿@page "/loginadmin"
+
+<div class="sign-form">
+    <EditForm EditContext="@EditContext" OnSubmit="OnSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="sign-validation">
+            <ValidationComponent placeholder="Username"
+                             @bind-Value="@User.Username"
+                             Error="@GetError(() => User.Username)"></ValidationComponent>
+        </div>
+
+        <div class="sign-validation">
+            <ValidationComponent type="password"
+                             placeholder="Password"
+                             @bind-Value="@User.Password"
+                             Error="@GetError(() => User.Password)"></ValidationComponent>
+        </div>
+        <button class="sign-button btn btn-primary" type="submit">Sign in</button>
+    </EditForm>
+</div>

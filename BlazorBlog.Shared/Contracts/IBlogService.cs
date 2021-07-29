@@ -10,5 +10,6 @@ namespace BlazorBlog.Shared.Contracts
         Task InsertNewPost(BlogPostEntityDTO post);
         Task<List<BlogPostEntityDTO>> GetAllPosts();
         Task<BlogPostEntityDTO> GetPostWithId(int id);
+        Task<List<TagEntityDTO>> GetAllTags();
     }
 }

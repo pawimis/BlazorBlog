@@ -11,13 +11,19 @@ namespace BlazorBlog.WebApi.Mappings
     {
         public Maps()
         {
-            CreateMap<TagsTable, TagEntityDTO>();
-            CreateMap<TagEntityDTO, TagsTable>();
-
+            CreateMap<PostTag, TagEntityCreateDTO>().ReverseMap();
+            CreateMap<PostTag, TagEntityDTO>().ReverseMap();
+            CreateMap<PostTag, TagEntityDTO>().ForMember
+             (dto => dto.Posts,
+             opt =>
+             opt.MapFrom(x => x.Posts.Select(y => y).ToList())).ReverseMap();
+            CreateMap<BlogPost, BlogPostEntityDTO>().ReverseMap();
+            CreateMap<BlogPost, BlogPostEntityCreateDTO>().ReverseMap();
             CreateMap<BlogPost, BlogPostEntityDTO>().ForMember
                 (dto => dto.Tags,
                 opt =>
-                opt.MapFrom(x => x.PostTagRelations.Select(y => y.Tag).ToList()));
+                opt.MapFrom(x => x.Tags.Select(y => y).ToList())).ReverseMap();
+
             //CreateMap<PostTagRelation, TagEntityDTO>();
         }
     }

@@ -15,5 +15,34 @@
             </summary>
             <returns> List of posts</returns>
         </member>
+        <member name="M:BlazorBlog.WebApi.Controllers.PostsController.GetPost(System.Int32)">
+            <summary>
+            Gets a post with id
+            </summary>
+            <param name="id">id of post</param>
+            <returns>post or null if not found</returns>
+        </member>
+        <member name="M:BlazorBlog.WebApi.Controllers.PostsController.Create(BlazorBlog.Shared.Entities.BlogPostEntityCreateDTO)">
+            <summary>
+            Creates post
+            </summary>
+            <param name="postDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorBlog.WebApi.Controllers.PostsController.Update(System.Int32,BlazorBlog.Shared.Entities.BlogPostEntityCreateDTO)">
+            <summary>
+            Updates post
+            </summary>
+            <param name="id"></param>
+            <param name="postDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorBlog.WebApi.Controllers.PostsController.Delete(System.Int32)">
+            <summary>
+            Removes a post by id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

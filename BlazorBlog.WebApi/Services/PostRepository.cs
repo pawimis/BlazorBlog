@@ -5,6 +5,7 @@ using BlazorBlog.WebApi.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorBlog.WebApi.Services
@@ -18,10 +19,21 @@ namespace BlazorBlog.WebApi.Services
             _db = db;
         }
 
-        public async Task<bool> Create(BlogPost entity)
+        public async Task<int> Create(BlogPost entity)
         {
-            await _db.BlogPosts.AddAsync(entity);
-            return await Save();
+            if (entity.Tags != null && entity.Tags.Any())
+            {
+                foreach (PostTag tag in entity.Tags)
+                {
+                    if (await _db.PostTags.AnyAsync(x => x.TagText == tag.TagText))
+                    {
+                        _db.PostTags.Attach(tag);
+                    }
+                }
+            }
+            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<BlogPost> item = await _db.BlogPosts.AddAsync(entity);
+            await Save();
+            return item.Entity.Id;
         }
 
         public async Task<bool> Delete(BlogPost entity)
@@ -30,15 +42,21 @@ namespace BlazorBlog.WebApi.Services
             return await Save();
         }
 
+        public Task<bool> Exists(int id)
+        {
+            return _db.BlogPosts.AnyAsync(x => x.Id == id);
+        }
+
         public async Task<IList<BlogPost>> FindAll()
         {
-            List<BlogPost> post = await _db.BlogPosts.Include(x => x.PostTagRelations).ThenInclude(xf => xf.Tag).ToListAsync();
+            List<BlogPost> post = await _db.BlogPosts.Include(x => x.Tags).ToListAsync();
             return post;
         }
 
         public async Task<BlogPost> FindById(int id)
         {
-            BlogPost post = await _db.BlogPosts.FindAsync(id);
+            BlogPost post = await _db.BlogPosts.FirstOrDefaultAsync(x => x.Id == id);
+
             return post;
         }
 

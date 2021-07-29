@@ -17,8 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.8" PrivateAssets="all" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.1" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
@@ -26,6 +30,7 @@
     <ProjectReference Include="..\BlazorBlog.Business\BlazorBlog.Business.csproj" />
     <ProjectReference Include="..\BlazorBlog.Shared\BlazorBlog.Shared.csproj" />
     <ProjectReference Include="..\BlazorBlog.TestFake\BlazorBlog.TestFake.csproj" />
+    <ProjectReference Include="..\BlazorBlog.WebAPIAccess\BlazorBlog.WebAPIAccess.csproj" />
   </ItemGroup>
 
 </Project>

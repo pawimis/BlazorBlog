@@ -3,6 +3,7 @@ using BlazorBlog.WebApi.Data;
 using BlazorBlog.WebApi.Mappings;
 using BlazorBlog.WebApi.Services;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text;
 
 namespace BlazorBlog.WebApi
 {
@@ -33,7 +38,8 @@ namespace BlazorBlog.WebApi
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddCors(options =>
@@ -45,13 +51,36 @@ namespace BlazorBlog.WebApi
             });
 
             services.AddAutoMapper(typeof(Maps));
-
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
             services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc("v0.2", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Title = "Blazor Blog API",
                     Version = "v0.2"
+                });
+                config.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme() { In = Microsoft.OpenApi.Models.ParameterLocation.Header, Description = "Enter Bearer", Name = "Authorization", Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey });
+                config.AddSecurityRequirement(new OpenApiSecurityRequirement{
+                {
+                    new OpenApiSecurityScheme{
+                        Reference = new OpenApiReference{
+                            Id = "Bearer",
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    },new List<string>()
+                }
                 });
                 string xfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xpath = Path.Combine(AppContext.BaseDirectory, xfile);
@@ -60,6 +89,7 @@ namespace BlazorBlog.WebApi
 
             services.AddSingleton<ILoggerService, LoggerService>();
             services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlite("Connection string");
@@ -68,7 +98,10 @@ namespace BlazorBlog.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app,
+                              IWebHostEnvironment env,
+                              UserManager<IdentityUser> userManager,
+                              RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -89,6 +122,8 @@ namespace BlazorBlog.WebApi
             });
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
+
+            SeedData.Seed(userManager, roleManager).Wait();
 
             app.UseRouting();
 

@@ -27,7 +27,7 @@ namespace BlazorBlog.TestFake
                 "For now I am closing version 0.1. Link: https://github.com/pawimis/BlazorBlog/tree/v0.1 <br/>" +
                 "I will deal with further corrections in the near future. The first step will be to create and host ASP.NET Core API with Entity framework to store posts." +
                 " Then I will create a page for adding posts. I think this is a good starting point before describing the steps I took to create this blog ",
-                Tags = new List<TagEntityDTO> { new TagEntityDTO(0, "intro"), new TagEntityDTO(1, "intro") }
+                Tags = new List<TagEntityDTO> { new TagEntityDTO { TagText = "intro" } }
             };
             BlogPosts.Add(post);
 
