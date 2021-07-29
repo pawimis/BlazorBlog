@@ -1,0 +1,23 @@
+﻿<div class="main-container">
+    <h1 class="post-title">@Post.Title</h1>
+    <div class="blog-item-border">
+        <p class="right-aligned">@Post.CreateDate.ToShortDateString()</p>
+        <div class="blog-item">
+            <img class="image-item" src="@Post.FrontPostImage" />
+            <p>@Post.IntroPostContent</p>
+            <p> @((MarkupString)Post.PostContent)</p>
+            <div class="spaced-container">
+                @if (Post.Tags != null)
+                {
+                    foreach (var tag in Post.Tags)
+                    {
+                        <p>#@tag.TagText</p>
+                    }
+                }
+            </div>
+        </div>
+        <p class="right-aligned" lang="en">v @Post.BranchVersion.ToString().Replace(',', '.')</p>
+    </div>
+</div>
+
+

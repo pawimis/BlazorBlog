@@ -9,6 +9,7 @@ namespace BlazorBlog.WebApi.Data
     {
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<FileDetail> Files { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

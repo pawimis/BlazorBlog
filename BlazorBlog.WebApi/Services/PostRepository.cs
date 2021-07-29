@@ -3,6 +3,7 @@ using BlazorBlog.WebApi.Data;
 using BlazorBlog.WebApi.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace BlazorBlog.WebApi.Services
                     }
                 }
             }
-            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<BlogPost> item = await _db.BlogPosts.AddAsync(entity);
+            EntityEntry<BlogPost> item = await _db.BlogPosts.AddAsync(entity);
             await Save();
             return item.Entity.Id;
         }

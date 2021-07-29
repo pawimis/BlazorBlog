@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Components.Forms;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BlazorBlog.Pages
@@ -19,6 +21,7 @@ namespace BlazorBlog.Pages
         private List<IBrowserFile> loadedFiles = new();
         private long maxFileSize = 1024 * 15;
         private int maxAllowedFiles = 1;
+
         private List<TagEntityDTO> _tagList { get; set; } = new List<TagEntityDTO>();
         private List<string> SelectedTagList { get; set; } = new List<string>();
         private string NewTagText { get; set; }
@@ -27,6 +30,8 @@ namespace BlazorBlog.Pages
         private BlogPostEntityDTO Post { get; set; } = new BlogPostEntityDTO();
         [Inject]
         private IBlogService BlogService { get; set; }
+        [Inject]
+        private IAdminService AdminService { get; set; }
         [CascadingParameter]
         private Task<AuthenticationState> AuthenticationStateTask { get; set; }
         protected override void OnInitialized()
@@ -81,12 +86,30 @@ namespace BlazorBlog.Pages
             StateHasChanged();
 
         }
-        private void SendForm()
+        private async void SendForm()
         {
+            string imageURL = string.Empty;
+            byte[] imageByteArray = await GetImageFromList();
+            if (imageByteArray != null && imageByteArray.Length > 0)
+            {
+                using MultipartFormDataContent content = new MultipartFormDataContent
+                {
+                    new ByteArrayContent(imageByteArray)
+                };
+                imageURL = await AdminService.UploadImage(content);
+                Console.WriteLine(imageURL);
+            }
+            if (string.IsNullOrWhiteSpace(imageURL))
+            {
+                return;
+            }
 
+            Post.FrontPostImage = imageURL;
+            await BlogService.InsertNewPost(Post);
         }
-        private void GeneratePreview()
+        private async void GeneratePreview()
         {
+            Post.CreateDate = DateTime.Now;
             if (SelectedTagList.Any())
             {
                 if (Post.Tags == null)
@@ -102,10 +125,29 @@ namespace BlazorBlog.Pages
                 {
                     Post.Tags.Add(new TagEntityDTO { TagText = item });
                 }
+
             }
+
+            byte[] imageByteArray = await GetImageFromList();
+            Post.FrontPostImage = string.Format("data:image/bmp;base64, {0}", (imageByteArray != null ? Convert.ToBase64String(imageByteArray) : string.Empty));
+
             ShowPreview = true;
             StateHasChanged();
 
+        }
+        private async Task<byte[]> GetImageFromList()
+        {
+            IBrowserFile file = loadedFiles.FirstOrDefault();
+            if (file != null)
+            {
+                MemoryStream ms = new();
+                await file.OpenReadStream(5120000).CopyToAsync(ms);
+                if (ms != null)
+                {
+                    return ms.ToArray();
+                }
+            }
+            return null;
         }
         protected override async Task OnParametersSetAsync()
         {
@@ -138,6 +180,7 @@ namespace BlazorBlog.Pages
                 try
                 {
                     loadedFiles.Add(file);
+
                 }
                 catch (Exception ex)
                 {

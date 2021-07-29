@@ -44,8 +44,22 @@ namespace BlazorBlog.WebAPIAccess
             await ThrowExceptionIfResponseIsNotSuccessfulAsync(response);
             return;
         }
+
+        public async Task<string> UploadImage(MultipartFormDataContent file)
+        {
+            HttpResponseMessage response = await _httpClient.PostAsync("api/files", file);
+            await ThrowExceptionIfResponseIsNotSuccessfulAsync(response);
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
+        }
+
         private async Task ThrowExceptionIfResponseIsNotSuccessfulAsync(HttpResponseMessage responseMessage)
         {
+            if (responseMessage == null)
+            {
+                Console.WriteLine("Empty Response");
+            }
+
             if (!responseMessage.IsSuccessStatusCode)
             {
                 ErrorMessage errorMessage = await TryToGetMessageAsync(responseMessage);

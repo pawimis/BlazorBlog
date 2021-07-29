@@ -24,15 +24,15 @@
             <input type="text" class="form-control" @bind="@NewTagText">
             <button type="submit" class="btn btn-primary " @onclick="AddTag">Add Tag</button>
         </div>
-       
-            <select class="form-select mb-3" aria-label="Default select example">
-                @foreach (var item in _tagList)
-                {
-                    <option class="dropdown-item" value="@item.TagText" @onclick="@(() => OnItemClicked(item))">@item.TagText</option>
-                }
-            </select>
 
-       
+        <select class="form-select mb-3" aria-label="Default select example">
+            @foreach (var item in _tagList)
+            {
+                <option class="dropdown-item" value="@item.TagText" @onclick="@(() => OnItemClicked(item))">@item.TagText</option>
+            }
+        </select>
+
+
 
         <ul class="list-group">
             @foreach (var item in SelectedTagList)
@@ -50,27 +50,9 @@
         <button type="submit" class="btn btn-primary mb-3" @onclick="GeneratePreview">Preview</button>
         @if (ShowPreview)
         {
-            <div class="main-container border-1">
-                <h1 class="post-title">@Post.Title</h1>
-                <div class="blog-item-border">
-                    <p class="right-aligned">@Post.CreateDate.ToShortDateString()</p>
-                    <div class="blog-item">
-                        <img class="image-item" src="@Post.FrontPostImage" />
-                        <p>@Post.IntroPostContent</p>
-                        <p> @((MarkupString)Post.PostContent)</p>
-                        <div class="spaced-container">
-                            @if (Post.Tags != null)
-                            {
-                                foreach (var tag in Post.Tags)
-                                {
-                                    <p>#@tag.TagText</p>
-                                }
-                            }
-                        </div>
-                    </div>
-                    <p class="right-aligned" lang="en">v @Post.BranchVersion.ToString().Replace(',', '.')</p>
-                </div>
-            </div>
+    <div class="content">
+        <PostComponent Post="@Post"></PostComponent>
+    </div>
         }
     </div>
 }

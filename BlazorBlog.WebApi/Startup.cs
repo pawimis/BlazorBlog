@@ -90,6 +90,7 @@ namespace BlazorBlog.WebApi
             services.AddSingleton<ILoggerService, LoggerService>();
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IFileRepository, FileRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlite("Connection string");
