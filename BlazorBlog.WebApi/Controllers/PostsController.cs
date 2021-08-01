@@ -202,7 +202,7 @@ namespace BlazorBlog.WebApi.Controllers
         }
         private IActionResult InternalError(Exception e)
         {
-            _loggerService.LogError($"{e.Message} - {e.InnerException}");
+            _loggerService.LogError($"{e.Message} - {e.InnerException} / {e.StackTrace}");
             return StatusCode(500, "Something went wrong");
         }
     }

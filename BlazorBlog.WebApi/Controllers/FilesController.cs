@@ -27,7 +27,7 @@ namespace BlazorBlog.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload([FromForm(Name = "image")] IFormFile file)
         {
             try
             {
@@ -45,6 +45,8 @@ namespace BlazorBlog.WebApi.Controllers
                         fileDetail.DocumentName = docName;
                         fileDetail.DocType = fileType;
                         fileDetail.DocUrl = Path.Combine(filePath, "Files", fileDetail.Id.ToString() + fileDetail.DocType);
+                        fileUrl = Path.Combine($"{Request.Scheme}://{Request.Host}{Request.PathBase}", "Files", fileDetail.Id.ToString() + fileDetail.DocType);
+                        Directory.CreateDirectory(Path.Combine(filePath, "Files"));
                         using (FileStream stream = new(fileDetail.DocUrl, FileMode.Create, FileAccess.Write))
                         {
                             await file.CopyToAsync(stream);

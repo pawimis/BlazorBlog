@@ -5,7 +5,7 @@
         <DataAnnotationsValidator />
 
         <div class="sign-validation">
-            <ValidationComponent placeholder="Username"
+            <ValidationComponent placeholder="Username" 
                              @bind-Value="@User.Username"
                              Error="@GetError(() => User.Username)"></ValidationComponent>
         </div>

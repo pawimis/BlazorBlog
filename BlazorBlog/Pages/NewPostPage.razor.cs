@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace BlazorBlog.Pages
@@ -92,10 +93,9 @@ namespace BlazorBlog.Pages
             byte[] imageByteArray = await GetImageFromList();
             if (imageByteArray != null && imageByteArray.Length > 0)
             {
-                using MultipartFormDataContent content = new MultipartFormDataContent
-                {
-                    new ByteArrayContent(imageByteArray)
-                };
+                MultipartFormDataContent content = new MultipartFormDataContent();
+                content.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+                content.Add(new ByteArrayContent(imageByteArray), "image", $"{loadedFiles.FirstOrDefault().Name}");
                 imageURL = await AdminService.UploadImage(content);
                 Console.WriteLine(imageURL);
             }
@@ -140,6 +140,7 @@ namespace BlazorBlog.Pages
             IBrowserFile file = loadedFiles.FirstOrDefault();
             if (file != null)
             {
+
                 MemoryStream ms = new();
                 await file.OpenReadStream(5120000).CopyToAsync(ms);
                 if (ms != null)
