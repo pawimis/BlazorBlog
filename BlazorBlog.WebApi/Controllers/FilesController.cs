@@ -33,10 +33,9 @@ namespace BlazorBlog.WebApi.Controllers
             {
                 FileDetail fileDetail = new();
                 string fileType = Path.GetExtension(file.FileName);
-                string fileUrl = string.Empty;
                 if (fileType.ToLower() == ".jpg" || fileType.ToLower() == ".png" || fileType.ToLower() == ".jpeg")
                 {
-                    string filePath = _env.ContentRootPath;
+                    string filePath = _env.WebRootPath;
                     string docName = Path.GetFileName(file.FileName);
                     if (file != null && file.Length > 0)
                     {
@@ -45,7 +44,6 @@ namespace BlazorBlog.WebApi.Controllers
                         fileDetail.DocumentName = docName;
                         fileDetail.DocType = fileType;
                         fileDetail.DocUrl = Path.Combine(filePath, "Files", fileDetail.Id.ToString() + fileDetail.DocType);
-                        fileUrl = Path.Combine($"{Request.Scheme}://{Request.Host}{Request.PathBase}", "Files", fileDetail.Id.ToString() + fileDetail.DocType);
                         Directory.CreateDirectory(Path.Combine(filePath, "Files"));
                         using (FileStream stream = new(fileDetail.DocUrl, FileMode.Create, FileAccess.Write))
                         {
@@ -58,7 +56,7 @@ namespace BlazorBlog.WebApi.Controllers
                         return BadRequest();
                     }
                 }
-                return Ok(fileUrl);
+                return Ok(fileDetail.DocUrl);
             }
             catch (Exception e)
             {

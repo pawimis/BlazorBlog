@@ -50,7 +50,7 @@ namespace BlazorBlog.WebApi.Controllers
         {
             try
             {
-                IList<Data.Entities.BlogPost> posts = await _postRepository.FindAll();
+                IList<BlogPost> posts = await _postRepository.FindAll();
                 IList<BlogPostEntityCreateDTO> response = _mapper.Map<IList<BlogPostEntityCreateDTO>>(posts);
                 return Ok(response);
             }
@@ -184,7 +184,7 @@ namespace BlazorBlog.WebApi.Controllers
                 {
                     return NotFound();
                 }
-                Data.Entities.BlogPost post = await _postRepository.FindById(id);
+                BlogPost post = await _postRepository.FindById(id);
                 bool isSuccess = await _postRepository.Delete(post);
                 if (!isSuccess)
                 {
@@ -194,10 +194,10 @@ namespace BlazorBlog.WebApi.Controllers
 
             }
 
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                return InternalError(e);
             }
         }
         private IActionResult InternalError(Exception e)

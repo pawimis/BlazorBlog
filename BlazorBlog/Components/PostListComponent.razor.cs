@@ -4,6 +4,7 @@ using BlazorBlog.Shared.Entities;
 using Microsoft.AspNetCore.Components;
 
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorBlog.Components
@@ -18,7 +19,11 @@ namespace BlazorBlog.Components
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            BlogPostItems = new ObservableCollection<BlogPostEntityDTO>(await BlogService.GetAllPosts());
+            ObservableCollection<BlogPostEntityDTO> posts = new(await BlogService.GetAllPosts());
+            if (posts.Any())
+            {
+                BlogPostItems = new ObservableCollection<BlogPostEntityDTO>(posts.OrderByDescending(p => p.CreateDate));
+            }
         }
     }
 }

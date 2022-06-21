@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BlazorBlog.TestFake
 {
-    public class TestData
+    public static class TestData
     {
         public static List<BlogPostEntityDTO> BlogPosts { get; private set; }
         public static void CreateTestBlogPosts()

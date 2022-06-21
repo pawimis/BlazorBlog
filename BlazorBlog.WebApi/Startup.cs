@@ -37,7 +37,7 @@ namespace BlazorBlog.WebApi
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+      //      services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -91,10 +91,6 @@ namespace BlazorBlog.WebApi
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlite("Connection string");
-            });
             services.AddControllers();
         }
 
@@ -104,6 +100,8 @@ namespace BlazorBlog.WebApi
                               UserManager<IdentityUser> userManager,
                               RoleManager<IdentityRole> roleManager)
         {
+            app.UseStaticFiles();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -127,7 +125,6 @@ namespace BlazorBlog.WebApi
             SeedData.Seed(userManager, roleManager).Wait();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
